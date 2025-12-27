@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Scanner | 市川学園座席管理</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/admin-scan.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <header class="scan-header">
+        <div class="logo">市川学園座席管理システム</div>
+        <!-- No logout or menu needed -->
+    </header>
+
+    <main class="scan-main">
+        <div class="container">
+
+            <!-- Step 1: Configuration -->
+            <section id="setup-section" class="card">
+                <h2><span class="step-badge">1</span> 対象設定</h2>
+                <p class="desc">ご担当の公演情報を選択してください</p>
+
+                <div class="form-group">
+                    <label>団体 (Group)</label>
+                    <div class="select-wrapper">
+                        <select id="target-group">
+                            <option value="" disabled selected>読み込み中...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>日程 (Day)</label>
+                        <div class="select-wrapper">
+                            <select id="target-day" disabled>
+                                <option value="">-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>時間 (Time)</label>
+                        <div class="select-wrapper">
+                            <select id="target-timeslot" disabled>
+                                <option value="">-</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btn-start-scan" class="btn-lg btn-primary" disabled>
+                    スキャンを開始
+                </button>
+            </section>
+
+            <!-- Step 2: Scanning -->
+            <section id="scan-section" class="card" style="display:none;">
+                <div class="scan-header-bar">
+                    <div class="current-target">
+                        <span id="disp-target-group">Group</span>
+                        <span id="disp-target-time">Day 1 / A</span>
+                    </div>
+                    <button id="btn-change-mode" class="btn-sm">設定変更</button>
+                </div>
+
+                <div class="tab-group">
+                    <button class="tab active" data-tab="camera">カメラ</button>
+                    <button class="tab" data-tab="manual">手入力</button>
+                </div>
+
+                <!-- Camera View -->
+                <div id="tab-camera" class="tab-content active">
+                    <div id="reader-wrapper">
+                        <div id="reader"></div>
+                    </div>
+                    <p class="hint">QRコードをカメラに向けてください</p>
+                </div>
+
+                <!-- Manual Input View -->
+                <div id="tab-manual" class="tab-content">
+                    <div class="manual-form">
+                        <div class="form-group">
+                            <label>予約ID</label>
+                            <input type="number" id="manual-id" placeholder="IDを入力">
+                        </div>
+                        <div class="form-group">
+                            <label>パスコード (4桁)</label>
+                            <input type="text" id="manual-pass" placeholder="パスコードを入力">
+                            <small>※QR読取不可時にチケット記載のコードを入力</small>
+                        </div>
+                        <button id="btn-manual-check" class="btn-lg btn-secondary">照会実行</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal for Result -->
+    <div id="result-overlay" class="overlay" style="display:none;">
+        <div class="result-card">
+            <div id="res-icon-area"></div>
+            <h3 id="res-title">確認</h3>
+            <div id="res-content" class="res-details"></div>
+
+            <div class="res-actions">
+                <button id="btn-confirm-checkin" class="btn-lg btn-success">チェックイン</button>
+                <button id="btn-cancel-checkin" class="btn-lg btn-outline">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast for success -->
+    <div id="toast" class="toast"></div>
+
+    <script type="module" src="../assets/js/admin-scan.js"></script>
+</body>
+
+</html>

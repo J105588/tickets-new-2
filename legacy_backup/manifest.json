@@ -1,0 +1,83 @@
+{
+  "name": "座席管理システム-國枝版",
+  "short_name": "座席管理-國枝版",
+  "description": "國枝ホール向けの座席予約・チェックイン・当日券発行システム",
+  "version": "17.0.0",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "ja",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "https://www.ichigaku.ac.jp/html/top/images/img_topics04.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://www.ichigaku.ac.jp/html/top/images/img_topics04.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://www.ichigaku.ac.jp/html/top/images/img_topics04.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "座席選択",
+      "short_name": "座席",
+      "description": "座席の選択と予約を行います",
+      "url": "./pages/seats.html",
+      "icons": [
+        {
+          "src": "https://www.ichigaku.ac.jp/html/top/images/img_topics04.jpg",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "時間帯選択",
+      "short_name": "時間帯",
+      "description": "公演の時間帯を選択します",
+      "url": "./pages/timeslot.html",
+      "icons": [
+        {
+          "src": "https://www.ichigaku.ac.jp/html/top/images/img_topics04.jpg",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "当日券発行",
+      "short_name": "当日券",
+      "description": "当日券の発行を行います",
+      "url": "./pages/walkin.html",
+      "icons": [
+        {
+          "src": "https://www.ichigaku.ac.jp/html/top/images/img_topics04.jpg",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  }
+}
